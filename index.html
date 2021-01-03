@@ -1,0 +1,342 @@
+
+<html>
+<head>
+<title>Admin Edits </title>
+<meta charset="utf-8">
+<script src="static/js/adminedits.js" ></script>
+<script src="static/js/main.js" ></script>
+<link rel="stylesheet" type="text/css" href="static/css/main.css" >
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+</head>
+<body class="main_body" onload=" Hide_all_Admin_Divs ()">
+<div id="main-header">
+    <div  id= "Navigetion" class="header">
+        <!-- ======= CLOSE ====== -->
+    <span href="javascript:void(0)" class="closebtn" onclick="closeNavi()"><label class="close-navi-span"> &times;</label></span><!-- closs the navi -->
+        <!-- <div id="our-avenues-menu-label-div">
+            <label class="our-avenues-label" onclick="Load_index ()" > Home</label>
+        </div><br>
+        <div id="our-avenues-menu-label-div">
+            <label class="our-avenues-label" > Our Menu</label>
+        </div><br> -->
+        <div id="Drop-Down-Id">
+            <center>
+                <span class="navigetion-icone-flower" >&#9827;</span>
+                <label onclick="Load_Index_view ()" class="navigetion-content-labels">Home</label>
+                <label onclick="Load_Boxes_view ()" class="navigetion-content-labels">Boxes</label>
+                <label onclick="Load_Baskets_View ()" class="navigetion-content-labels">Baskets</label>
+                <label onclick="Load_Funeral_View ()" class="navigetion-content-labels">Funeral</label>
+                <ul id="UList">
+                    <li><span class="caret navigetion-content-labels">Bouquets</span>
+                        <ul class="nested">
+                            <label onclick="Load_Bouquets_Hand_View ()" class="navigetion-content-labels">Hand</label>
+                            <label onclick="Load_Bouquets_Standing_View ()" class="navigetion-content-labels">Standing</label>
+                        </ul>
+                    </li>
+                        
+                    <li><span class="caret navigetion-content-labels">Functional</span>
+                        <ul class="nested">
+                            <label onclick="Load_Functional_Trollies_View ()" class="navigetion-content-labels">Trollies</label>
+                            <label onclick="Load_Functional_Introduction_View ()" class="navigetion-content-labels">Introduction</label>
+                        </ul>
+                    </li>
+
+                    <li><span class="caret navigetion-content-labels">Decoratives</span>
+                        <ul class="nested">
+                            <label class="navigetion-content-labels-child">Interior</label> 
+                                <label onclick="Load_Decoratives_Interior_Conrer_View ()" class="navigetion-content-labels">Conrer pots</label>
+                                <label onclick="Load_Decoratives_Interior_Entrana_View ()" class="navigetion-content-labels">Entrana pots</label>
+                                <label onclick="Load_Decoratives_Interior_Plonters_View ()" class="navigetion-content-labels">Plonters pots</label>
+                                <label onclick="Load_Decoratives_Interior_Walkway_View ()" class="navigetion-content-labels">Walk way pots</label>
+                                <label onclick="Load_Decoratives_Interior_Wallunit_View ()" class="navigetion-content-labels">Wall unit pots</label>
+                            <label class="navigetion-content-labels-child">Functional</label>
+                                <label onclick="Load_Decoratives_Functional_Birthday_View ()"  class="navigetion-content-labels">Birth day</label>
+                                <label onclick="Load_Decoratives_Functional_Weddings_View ()" class="navigetion-content-labels">Weddings</label>
+                                <label onclick="Load_Decoratives_Functional_babyshower_View ()" class="navigetion-content-labels">Baby shower</label>
+                                <label onclick="Load_Decoratives_Functional_Introduction_View ()" class="navigetion-content-labels">Introduction</label>
+                        </ul>
+                    </li>
+                </ul>
+                <br>
+                <label onclick="Load_Developer_View ()" class="navigetion-content-labels">Developer</label>
+            </center>
+        </div>
+        <br>
+        <!-- <div id="our-avenues-menu-label-div">
+            <label class="our-avenues-label" onclick="Load_developer ()" > Developer</label>
+        </div><br> -->
+</div>
+<div id="NaviDiv">
+    <label class="open-side-navi-label" onclick="openMenus()"> &#9752;</label>
+    <!-- <label class="kone-label">The Palm Court</label> -->
+</div>
+<script>
+function openMenus(){document.getElementById("Navigetion").style.width = "240px"}
+function closeNavi (){document.getElementById("Navigetion").style.width = "0"}
+
+let toggler = document.getElementsByClassName("caret");
+let i;
+for (i = 0; i < toggler.length; i++) 
+{
+    toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+    });
+}
+</script>
+
+</div> <!-- main-header-->
+    
+<div id="main-body" > <!-- Begin main-body div -->
+    <br><br>
+    <div id="alert-box-display-area"></div>
+		<div id="alert-box">
+			<div>
+				<div id="alert-box-header"></div>
+				<div id="alert-box-body"></div>
+				<div id="alert-box-footer"></div>
+			</div>
+		</div>
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <br>
+    <center><button class="menu_btns fontstyles" onclick="Show_add_menu_panel_div ()">Add :: Item</button></center>
+    <div id="add-menu-panel-div"><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_boxes_div_id ()">Boxes</button></center>
+        <div id="add-boxes-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/createitems_boxes">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            </center>
+        </div><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_baskets_div_id ()">Baskets</button></center>
+        <div id="add-baskets-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/createitems_baskets">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            </center>
+        </div><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_funeral_div_id ()">Funeral</button></center>
+        <div id="add-funeral-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/createitems_funeral">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+</div>
+
+
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<br>
+<center><button  class="menu_btns fontstyles" onclick="Show_edit_menu_panel_div ()">Edit :: Prices</button></center>
+<div id="edit-menu-panel-div"><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_boxes_div_id ()">Boxes</button></center>
+    <div id="edit-boxes-div-id"><br>
+    <center><button onclick="Fetch_All_Avenue_Edits ('itemsedit_boxes_items_endpoint','chips-tbody','chips-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button> </center>
+    <div id="chips-tbody-div">
+        <table class=" w3-bordered user-scrolling-table-admin">
+            <center><tbody id="chips-tbody"></tbody></center>
+        </table>
+    </div>
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/updateprices_boxes_items">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <!-- <label>Name</label>
+            <input required class="form_input" name="name" autocomplete="off" type="text"><br> -->
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_baskets_div_id ()">Baskets</button></center>
+    <div id="edit-baskets-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('itemsedit_baskets_items_endpoint','piloa-tbody','piloa-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="piloa-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="piloa-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/updateprices_baskets_items">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_funeral_div_id ()"> Funeral</button></center>
+    <div id="edit-funeral-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('itemsedit_funeral_items_endpoint','salads-tbody','salads-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="salads-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="salads-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/updateprices_funeral_items">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+</div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<br>
+<center><button class="menu_btns fontstyles" onclick="Show_delete_menu_panel_div ()">Delete :: Item</button></center>
+<div id="delete-menu-panel-div"><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_boxes_div_id ()">Boxes</button></center>
+    <div id="delete-boxes-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('itemsedit_boxes_items_endpoint','chips-delete-tbody','chips-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="chips-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="chips-delete-tbody"></tbody></center>
+            </table>
+        </div>
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/deleteitems_boxes_items">
+            <label>Key</label>
+            <input required class="form_input" placeholder="key to delete" name="key" autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_baskets_div_id ()">Baskets</button></center>
+    <div id="delete-baskets-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('itemsedit_baskets_items_endpoint','piloa-delete-tbody','piloa-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="piloa-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="piloa-delete-tbody"></tbody></center>
+            </table>
+        </div>
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/deleteitems_baskets_items">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_funeral_div_id ()"> Funeral</button></center>
+    <div id="delete-funeral-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('itemsedit_funeral_items_endpoint','salads-delete-tbody','salads-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="salads-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="salads-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/deleteitems_funeral_items">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    
+
+
+
+
+
+
+<br><br>
+<center>
+<!-- <button class="back-btn" onclick="javascript:history.go(-1)"><< Back</button><br><br> -->
+</center>
+</div>
+</body>
+</html>
